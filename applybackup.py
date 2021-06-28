@@ -10,10 +10,10 @@ import paramiko
 import subprocess
 from scp import SCPClient
 from datetime import timedelta
-import config.yaml
+
 
 local_path = '/home/localuser/Saves/'
-sql = 'dump.sql'
+sql = 'dump.sql' #keep
 save_path = 'var/www/backupsql/'
 bdd_user = 'wordpressuser'
 bdd_pass = 'toto'
@@ -24,6 +24,7 @@ bdd = 'wordpress'
 try:
 	with tarfile.open(local_path+"Sauvegardedu20210526.tar") as tar:   #remplacer le sauvegardedublablabla par le argv
 		tar.extractall(local_path)
+#		exit()
 except tarfile.ExtractError:
 	print ('erreur')
 
@@ -36,23 +37,23 @@ except:
 
 #restorewordp
 original = '/home/localuser/Saves/var/www/html/'
-target = '/var/www/html/'
+target = '/var/www/'
 
-for files in os.listdir(target)
+for files in os.listdir(target):
 	i = os.path.join(target, files)
 	try:
 		shutil.rmtree(i)
-	except OSError:
-		os.remove(i)
+	except Exception as e:
+		print('cannot delete : ' + e)
 try:
 	shutil.move(original, target)
 except:
 	print('erreur shutil.move')
 
-#faire une fonction check_time pour valider l'argument
 
+#condition d'utilisation
 try:
-	if sys.argv[?] is in os.lsitdir(local_path)
+	if sys.argv[2] == 'restore':
 		#appliqué le backup du jour etc
 	else
 		print('file does not exist')
