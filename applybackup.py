@@ -10,7 +10,7 @@ import paramiko
 import subprocess
 from scp import SCPClient
 from datetime import timedelta
-#import config.yaml
+import config.yaml
 
 local_path = '/home/localuser/Saves/'
 sql = 'dump.sql'
@@ -22,7 +22,7 @@ bdd = 'wordpress'
 
 #extract
 try:
-	with tarfile.open(local_path+"Sauvegardedu20210526.tar") as tar:
+	with tarfile.open(local_path+"Sauvegardedu20210526.tar") as tar:   #remplacer le sauvegardedublablabla par le argv
 		tar.extractall(local_path)
 except tarfile.ExtractError:
 	print ('erreur')
@@ -35,9 +35,19 @@ except:
 	print('nope')
 
 #restorewordp
+original = '/home/localuser/Saves/var/www/html/'
+target = '/var/www/html/'
 
-try 
-
+for files in os.listdir(target)
+	i = os.path.join(target, files)
+	try:
+		shutil.rmtree(i)
+	except OSError:
+		os.remove(i)
+try:
+	shutil.move(original, target)
+except:
+	print('erreur shutil.move')
 
 #faire une fonction check_time pour valider l'argument
 
