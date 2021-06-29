@@ -20,7 +20,7 @@ bdd_pass = 'toto'
 bdd = 'wordpress'
 
 
-def extract():
+def extract(local_path):
 	try:
 		with tarfile.open(local_path+"Sauvegardedu20210526.tar") as tar:   #remplacer le sauvegardedublablabla par le argv
 			tar.extractall(local_path)
@@ -28,9 +28,9 @@ def extract():
 		print ('erreur')
 
 
-def restoresql():
+def restoresql(bdd_user, bdd_pass, bdd, local_path, save_path, sql):
 	try:
-		k = subprocess.Popen(["mysql -u"+ bdd_user +" -p"+ bdd_pass +" "+ bdd +" < "+ local_path+save_path+sql], shell=True)
+		k = subprocess.Popen(["mysql -u"+ (bdd_user) +" -p"+ (bdd_pass) +" "+ (bdd) +" < "+ (local_path)+(save_path+sql)], shell=True)
 	except:
 		print('nope')
 
@@ -48,13 +48,3 @@ def restorewordp():
 		shutil.move(original, target)
 	except:
 		print('erreur shutil.move')
-
-
-def main():
-	if sys.argv[1] == 'restore':
-		extract()
-		restoresql()
-		restorewordp()
-	else:
-		print('argument inexistant où inconue')
-		exit()
