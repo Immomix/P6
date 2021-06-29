@@ -20,8 +20,6 @@ if file.exists ():
 else:
 	exit(5)
 
-#action#vars = read_yaml(sys.argv[1])
-
 vars['dailydir'] = time.strftime("%Y%m%d")
 vars['namedir'] = "Sauvegardedu" + vars['dailydir'] + ".tar"
 
