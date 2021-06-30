@@ -17,6 +17,5 @@ try:
 		applybackup.restorewordp()
 	else :
 		print('argument inexistant où inconue')
-	exit(0)
 except:
 	print('invalid or missing arguments')

@@ -16,9 +16,9 @@ def extract():
 	local_path = '/home/localuser/Saves/'
 
 	try:
-		with tarfile.open(local_path+"Sauvegardedu20210526.tar") as tar:   #remplacer le sauvegardedublablabla par le argv
+		with tarfile.open(local_path + sys.argv[2]) as tar:   #remplacer le sauvegardedublablabla par le argv
 			tar.extractall(local_path)
-			print('extact check')
+			print('extract check')
 	except tarfile.ExtractError:
 		print ('erreur')
 
