@@ -1,13 +1,13 @@
 local_path: '/home/localuser/Saves'
-ip_address: "192.168.0.2"
+ip_address: "192.168.1.21"
 name: "distantuser"
 passw: "root"
 remote_path: '/home/distantuser/Saves'
 save_path:
   - '/var/www/html'
-  - '/var/www/backupsql'
+  - '/tmp/var/www/backupsql'
 bdd: "wordpress"
 bdd_user: "wordpressuser"
 bdd_pass: "toto"
-bdd_path_to_save: '/var/www/backupsql/'
+bdd_path_to_save: '/tmp/var/www/backupsql/'
 bdd_save_name: 'dump.sql' 
