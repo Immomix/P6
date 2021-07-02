@@ -11,15 +11,21 @@ from scp import SCPClient
 from datetime import timedelta
 
 def connect(vars):
-  ssh_client = paramiko.SSHClient()
-  ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-  ssh_client.connect(hostname=vars['ip_address'],username=vars['name'],password=vars['passw'])
-  return (ssh_client)
-
+	try:
+		ssh_client = paramiko.SSHClient()
+		ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+		ssh_client.connect(hostname=vars['ip_address'],username=vars['name'],password=vars['passw'])
+		print('connect check')
+		return (ssh_client)
+	except:
+		print('erreur dans la fonction connect')
 def copy(handle_ssh, vars):
-  scp = SCPClient(handle_ssh.get_transport())
-  scp.put(vars['local_path'] + "/" + vars['namedir'],vars['remote_path'])
-
+	try:
+		scp = SCPClient(handle_ssh.get_transport())
+		scp.put(vars['local_path'] + "/" + vars['namedir'],vars['remote_path'])
+		print('copy check')
+	except:
+		print('erreur dans la fonction copy')
 
 def delete(handle_ssh, vars):
 	sftp = handle_ssh.open_sftp()
@@ -34,7 +40,9 @@ def delete(handle_ssh, vars):
 				filepath2 = vars['local_path'] + '/' + entry.filename
 				sftp.remove(filepath)
 				os.remove(filepath2)
+		print('delete check')
 	except paramiko.ssh_exception.AuthenticationException:
 		print('Authentication failed')
 		exit (2)
-
+	except:
+		print('erreur dans la fonction delete')

@@ -19,9 +19,12 @@ def create(vars):
 		with tarfile.open (vars['local_path'] + "/" + vars['namedir'], 'w') as archive:
 			for path_to_save in vars['save_path']:
 				archive.add (path_to_save)
+		print('archive.add check')
 	except tarfile.CompressionError:
 		print('tarfile.CompressionError')
 		exit(0)
 	except tarfile.TarError:
 		print('tarfile.tarError')
 		exit(1)
+	except:
+		print('erreur dans la fonction create')
