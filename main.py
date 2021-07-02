@@ -27,15 +27,17 @@ make_archive.create(vars)
 ssh = ssh_func.connect(vars)
 ssh_func.copy(ssh, vars)
 ssh_func.delete(ssh, vars)
-try:
+if len(sys.argv) > 2:
 	if sys.argv[2] == 'restore':
 		applybackup.extract()
 		applybackup.restoresql()
 		applybackup.restorewordp()
-	elif sys.argv[2] != 'restore':
-		exit()
+#	elif sys.argv[2] != 'restore':
+#		print('Choix de ne pas appliqué de backup où mauvais argument')
+#		exit()
 	else :
-		print('argument inexistant où inconue')
+		print('argument inconue')
 		exit()
-except:
-	print('invalid or missing arguments')
+else:
+	print('Choix de ne pas appliqué de backup')
+	exit()
