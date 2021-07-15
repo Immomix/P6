@@ -22,9 +22,9 @@ def create(vars):
 		print('archive.add check')
 	except tarfile.CompressionError:
 		print('tarfile.CompressionError')
-		exit(0)
+		exit(6)
 	except tarfile.TarError:
 		print('tarfile.tarError')
 		exit(1)
-	except:
-		print('erreur dans la fonction create')
+#	except:
+#		print('erreur dans la fonction create')

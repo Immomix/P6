@@ -2,6 +2,7 @@
 
 import ssh_func
 import make_archive
+import applybackup
 import yaml
 import sys
 import time
@@ -23,21 +24,20 @@ else:
 vars['dailydir'] = time.strftime("%Y%m%d")
 vars['namedir'] = "Sauvegardedu" + vars['dailydir'] + ".tar"
 
-make_archive.create(vars)
-ssh = ssh_func.connect(vars)
-ssh_func.copy(ssh, vars)
-ssh_func.delete(ssh, vars)
 if len(sys.argv) > 2:
 	if sys.argv[2] == 'restore':
-		applybackup.extract()
-		applybackup.restoresql()
-		applybackup.restorewordp()
-#	elif sys.argv[2] != 'restore':
-#		print('Choix de ne pas appliqué de backup où mauvais argument')
-#		exit()
+		applybackup.extract(vars)
+		applybackup.restoresql(vars)
+		applybackup.restorewordp(vars)
 	else :
-		print('argument inconue')
+		print('Le 2eme argument est inconue')
 		exit()
+elif len(sys.argv) >= 1:
+	make_archive.create(vars)
+	ssh = ssh_func.connect(vars)
+	ssh_func.copy(ssh, vars)
+	ssh_func.delete(ssh, vars)
+
 else:
 	print('Choix de ne pas appliqué de backup')
 	exit()

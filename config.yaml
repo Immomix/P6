@@ -1,8 +1,13 @@
 local_path: '/home/localuser/Saves'
+local_path2: '/home/localuser/Saves/'
 ip_address: "192.168.1.21"
 name: "distantuser"
 passw: "root"
 remote_path: '/home/distantuser/Saves'
+sql: "dump.sql"
+original: '/home/localuser/Saves/var/www/html/'
+target: '/var/www/'
+sql_save_path: 'var/www/backupsql/'
 save_path:
   - '/var/www/html'
   - '/tmp/var/www/backupsql'
