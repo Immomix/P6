@@ -26,3 +26,12 @@ Comment executer le script?:
 2eme option: Effectuer une restoration d'un backup crée ultérieurement:
 Choisir la date du backup à appliquer (modifiable dans le config.yaml).
 Effectuer la commande dans le répertoire courant: Python3 main.py config.yaml restore
+
+
+#Attention:
+Ce script gère uniquement les backups crée par celui-ci.
+pensez à bien modifiez le config.yaml pour rendre le script fonctionnel sur votre serveur.
+
+
+#Auteur:
+Xavier Richard
