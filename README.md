@@ -1,17 +1,28 @@
 # P6
 Openclassroom Projet 6
 
-OS: Debian9
-Python: Python3
+#Definition du Script:
+Script pour création et application de backup pour un serveur wordpress et sa database.
 
-Le script est un script en python3 pour automatiser les sauvegardes d'un site wordpress et sa database.
+#Pré-requis:
+2 Serveur sous debian 9
+Python3
+le ssh d'installez sur les 2 server.
+wordpress et maria-db sur le server (local).
 
 
-Le fichier Config.yaml nous sert à orchestrer les variables du script.
+#Utilisation:
+Telecharger le script sur le serveur local.
+configuration du config.yaml pour le ssh.
 
+#Config.yaml
+Ce fichier est le coeur du script il contient la totalité des variable utilisé dans le script.
 
-Le fichier: "main.py" permet de link tout les fichier ensembles est exécuter le script.
+#Fonctionnement:
+Comment executer le script?:
+1ere option: Uniquement effectuer une création de backup
+être dans le répertoire courant où se situe le script et executer la commande "Python3 main.py config.yaml"
 
-Le make_archive: création des sauvegardes en dossier compressé.
-
-Le ssh_func: grâce à l'utilisation du ssh via ce script, il crée une connection entre le site distant et le local pour pouvoir copier les fichiers de sauvegarde sur le serveur distant qui nous sert d'espace de stockage
+2eme option: Effectuer une restoration d'un backup crée ultérieurement:
+Choisir la date du backup à appliquer (modifiable dans le config.yaml).
+Effectuer la commande dans le répertoire courant: Python3 main.py config.yaml restore

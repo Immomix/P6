@@ -11,12 +11,12 @@ import subprocess
 from scp import SCPClient
 from datetime import timedelta
 
-
+#extraction des back-ups taré dans le repertoire courant (local_path2)
 def extract(vars):
-# rajouter date
+	chosen_backup = vars['backupname'] + vars['date'] + ".tar"
 	try:
-		if sys.argv[3] in os.listdir(vars['local_path2']):
-			with tarfile.open(vars['local_path2'] + sys.argv[3]) as tar:
+		if chosen_backup in os.listdir(vars['local_path2']):
+			with tarfile.open(vars['local_path2'] + chosen_backup) as tar:
 				tar.extractall(vars['local_path2'])
 				print('extract check')
 		else:
@@ -25,25 +25,15 @@ def extract(vars):
 	except tarfile.ExtractError:
 		print ('erreur')
 
-
+#application du backup sql 
 def restoresql(vars):
-#	local_path = '/home/localuser/Saves/'
-#	sql = 'dump.sql'
-#	sql_save_path = 'var/www/backupsql/'
-#	bdd_user = 'wordpressuser'
-#	bdd_pass = 'toto'
-#	bdd = 'wordpress'
-
 	try:
 		k = subprocess.Popen(["mysql -u"+ vars['bdd_user'] +" -p"+ vars['bdd_pass'] +" "+ vars['bdd'] +" < "+ vars['local_path2']+vars['sql_save_path']+vars['sql']], shell=True)
-		print('restoresql check')
+		print('restore sql check')
 	except:
 		print('nope')
-
+#application du back-up wordpress + suppression 
 def restorewordp(vars):
-#	original = '/home/localuser/Saves/var/www/html/'
-#	target = '/var/www/'
-
 	for files in os.listdir(vars['target']):
 		i = os.path.join(vars['target'], files)
 		try:

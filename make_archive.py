@@ -10,7 +10,7 @@ import paramiko
 import subprocess
 from scp import SCPClient
 from datetime import timedelta
-
+#creation des archives pour les back-ups 
 def create(vars):
 	username = vars['bdd_user']
 	try:
@@ -26,5 +26,3 @@ def create(vars):
 	except tarfile.TarError:
 		print('tarfile.tarError')
 		exit(1)
-#	except:
-#		print('erreur dans la fonction create')

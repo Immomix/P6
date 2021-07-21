@@ -9,7 +9,7 @@ import time
 import datetime
 import os.path
 import pathlib
-
+#definition du config.yaml et utilisation des information dedans pour utilisé les variables
 def read_yaml(file):
 	with open(file) as f:
 		return yaml.safe_load(f)
@@ -20,10 +20,13 @@ if file.exists ():
 	vars = read_yaml(sys.argv[1])
 else:
 	exit(5)
-
+#variable pour nommer les backup effectué à la date du jour
 vars['dailydir'] = time.strftime("%Y%m%d")
 vars['namedir'] = "Sauvegardedu" + vars['dailydir'] + ".tar"
 
+#check si un 2eme argument existe et si il est différent de "restore"
+#pour appliquer une restoration
+#si il n'y as pas de 2eme argument mais que le 1er est bon, creation de backup
 if len(sys.argv) > 2:
 	if sys.argv[2] == 'restore':
 		applybackup.extract(vars)
@@ -39,5 +42,5 @@ elif len(sys.argv) >= 1:
 	ssh_func.delete(ssh, vars)
 
 else:
-	print('Choix de ne pas appliqué de backup')
+	print('Le 1er argument est inconnue où est absent')
 	exit()

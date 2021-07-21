@@ -9,7 +9,7 @@ import tarfile
 import paramiko
 from scp import SCPClient
 from datetime import timedelta
-
+#etablissement de la connection en ssh entre la machine local et distante
 def connect(vars):
 	try:
 		ssh_client = paramiko.SSHClient()
@@ -19,6 +19,7 @@ def connect(vars):
 		return (ssh_client)
 	except:
 		print('erreur dans la fonction connect')
+#copie des back-up sur le serveur distant
 def copy(handle_ssh, vars):
 	try:
 		scp = SCPClient(handle_ssh.get_transport())
@@ -26,7 +27,7 @@ def copy(handle_ssh, vars):
 		print('copy check')
 	except:
 		print('erreur dans la fonction copy')
-
+#supression de la 8eme plus vielle sauvegarde sur le serveur local et distant 
 def delete(handle_ssh, vars):
 	sftp = handle_ssh.open_sftp()
 	try:
