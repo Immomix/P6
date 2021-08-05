@@ -20,10 +20,10 @@ def extract(vars):
 				tar.extractall(vars['local_path2'])
 				print('extract check')
 		else:
-			print('argv3 dosent exist')
-			exit()
+			print('choosen_back does not exist')
+			exit(9)
 	except tarfile.ExtractError:
-		print ('erreur')
+		print ('tarfile.extractError in applybackup')
 
 #application du backup sql 
 def restoresql(vars):
@@ -31,7 +31,7 @@ def restoresql(vars):
 		k = subprocess.Popen(["mysql -u"+ vars['bdd_user'] +" -p"+ vars['bdd_pass'] +" "+ vars['bdd'] +" < "+ vars['local_path2']+vars['sql_save_path']+vars['sql']], shell=True)
 		print('restore sql check')
 	except:
-		print('nope')
+		print('restore sql error')
 #application du back-up wordpress + suppression 
 def restorewordp(vars):
 	for files in os.listdir(vars['target']):

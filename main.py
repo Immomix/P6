@@ -19,7 +19,7 @@ file = pathlib.Path(sys.argv[1])
 if file.exists ():
 	vars = read_yaml(sys.argv[1])
 else:
-	exit(5)
+	exit(1)
 #variable pour nommer les backup effectué à la date du jour
 vars['dailydir'] = time.strftime("%Y%m%d")
 vars['namedir'] = "Sauvegardedu" + vars['dailydir'] + ".tar"
@@ -34,7 +34,7 @@ if len(sys.argv) > 2:
 		applybackup.restorewordp(vars)
 	else :
 		print('Le 2eme argument est inconue')
-		exit()
+		exit(2)
 elif len(sys.argv) >= 1:
 	make_archive.create(vars)
 	ssh = ssh_func.connect(vars)
@@ -43,4 +43,4 @@ elif len(sys.argv) >= 1:
 
 else:
 	print('Le 1er argument est inconnue où est absent')
-	exit()
+	exit(3)

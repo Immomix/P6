@@ -19,6 +19,7 @@ def connect(vars):
 		return (ssh_client)
 	except:
 		print('erreur dans la fonction connect')
+		exit (6)
 #copie des back-up sur le serveur distant
 def copy(handle_ssh, vars):
 	try:
@@ -27,6 +28,7 @@ def copy(handle_ssh, vars):
 		print('copy check')
 	except:
 		print('erreur dans la fonction copy')
+		exit (7)
 #supression de la 8eme plus vielle sauvegarde sur le serveur local et distant 
 def delete(handle_ssh, vars):
 	sftp = handle_ssh.open_sftp()
@@ -44,6 +46,6 @@ def delete(handle_ssh, vars):
 		print('delete check')
 	except paramiko.ssh_exception.AuthenticationException:
 		print('Authentication failed')
-		exit (2)
+		exit (8)
 	except:
 		print('erreur dans la fonction delete')

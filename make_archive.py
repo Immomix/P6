@@ -22,7 +22,7 @@ def create(vars):
 		print('archive.add check')
 	except tarfile.CompressionError:
 		print('tarfile.CompressionError')
-		exit(6)
+		exit(4)
 	except tarfile.TarError:
 		print('tarfile.tarError')
-		exit(1)
+		exit(5)
